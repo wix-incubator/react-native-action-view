@@ -38,7 +38,7 @@ export class SwipeActionView extends Component {
     }
 
     if(props["leftButtons"]) {
-      state.rightButtons = props["leftButtons"].map(f);
+      state.leftButtons = props["leftButtons"].map(f);
     }
 
     return state;
