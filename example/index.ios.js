@@ -13,7 +13,7 @@ import {
   View
 } from 'react-native';
 
-import { SwipeActionView } from './SwipeActionView';
+import { SwipeActionView } from 'react-native-action-view';
 
 class example extends Component {
   render() {

@@ -1,12 +1,24 @@
 {
-  "name": "example",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+  "name": "react-native-action-view",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
-  "dependencies": {
-    "react": "15.3.2",
-    "react-native": "0.34.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wix/react-native-action-view.git"
+  },
+  "version": "0.1.0",
+  "description": "Native container view for enabling swipe actions (for example to enable swipe to delete and such)",
+  "nativePackage": true,
+  "bugs": {
+    "url": "https://github.com/wix/react-native-action-view/issues"
+  },
+  "homepage": "https://github.com/wix/react-native-action-view",
+  "main": "index.js",
+  "author": "Leo Natan <lnatan@wix.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=15.2.1",
+    "react-native": ">=0.31.0"
   }
 }

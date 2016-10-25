@@ -62,4 +62,3 @@ export class SwipeActionView extends Component {
     return <NativeSwipeActionView {...this.props} {...this.state} onButtonTapped={this._onButtonTapped} />;
   }
 }
-

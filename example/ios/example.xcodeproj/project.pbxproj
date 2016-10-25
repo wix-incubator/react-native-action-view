@@ -22,7 +22,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		39E88D9D1D9AAB0500F665CA /* libSwipeActionView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 392E33281D9AA2A4003000E2 /* libSwipeActionView.a */; };
+		3916BCA41DBF6C9F00786D97 /* libSwipeActionView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3916BC971DBF685D00786D97 /* libSwipeActionView.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -90,11 +90,18 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
-		392E33271D9AA2A4003000E2 /* PBXContainerItemProxy */ = {
+		3916BC961DBF685D00786D97 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 39C2E4951D9A69EA0074A644 /* SwipeActionView.xcodeproj */;
+			containerPortal = 3916BC881DBF685D00786D97 /* SwipeActionView.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 39C2E45D1D9A679E0074A644;
+			remoteInfo = SwipeActionView;
+		};
+		3916BCAF1DBF6CA400786D97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3916BC881DBF685D00786D97 /* SwipeActionView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 39C2E45C1D9A679E0074A644;
 			remoteInfo = SwipeActionView;
 		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
@@ -133,7 +140,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = example/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = example/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		39C2E4951D9A69EA0074A644 /* SwipeActionView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwipeActionView.xcodeproj; path = ../lib/SwipeActionView.xcodeproj; sourceTree = "<group>"; };
+		3916BC881DBF685D00786D97 /* SwipeActionView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwipeActionView.xcodeproj; path = "../node_modules/react-native-action-view/ios/lib/SwipeActionView.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,7 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39E88D9D1D9AAB0500F665CA /* libSwipeActionView.a in Frameworks */,
+				3916BCA41DBF6C9F00786D97 /* libSwipeActionView.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -263,10 +270,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		392E33241D9AA2A4003000E2 /* Products */ = {
+		3916BC891DBF685D00786D97 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				392E33281D9AA2A4003000E2 /* libSwipeActionView.a */,
+				3916BC971DBF685D00786D97 /* libSwipeActionView.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -282,7 +289,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				39C2E4951D9A69EA0074A644 /* SwipeActionView.xcodeproj */,
+				3916BC881DBF685D00786D97 /* SwipeActionView.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -359,6 +366,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3916BCB01DBF6CA400786D97 /* PBXTargetDependency */,
 			);
 			name = example;
 			productName = "Hello World";
@@ -433,8 +441,8 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = 392E33241D9AA2A4003000E2 /* Products */;
-					ProjectRef = 39C2E4951D9A69EA0074A644 /* SwipeActionView.xcodeproj */;
+					ProductGroup = 3916BC891DBF685D00786D97 /* Products */;
+					ProjectRef = 3916BC881DBF685D00786D97 /* SwipeActionView.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -502,11 +510,11 @@
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		392E33281D9AA2A4003000E2 /* libSwipeActionView.a */ = {
+		3916BC971DBF685D00786D97 /* libSwipeActionView.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libSwipeActionView.a;
-			remoteRef = 392E33271D9AA2A4003000E2 /* PBXContainerItemProxy */;
+			remoteRef = 3916BC961DBF685D00786D97 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
@@ -586,6 +594,11 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* example */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		3916BCB01DBF6CA400786D97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwipeActionView;
+			targetProxy = 3916BCAF1DBF6CA400786D97 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
