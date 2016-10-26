@@ -617,7 +617,7 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     CADisplayLink * _displayLink;
     MGSwipeState _firstSwipeState;
 	
-	UIGestureRecognizer* _rnGR;
+	NSMutableSet<UIGestureRecognizer*>* _rnGestureRecognizers;
 }
 
 #pragma mark View creation & layout
@@ -1169,7 +1169,7 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     CGPoint current = [gesture translationInView:self];
     
     if (gesture.state == UIGestureRecognizerStateBegan) {
-		[_rnGR performSelector:NSSelectorFromString(@"cancel")];
+		[_rnGestureRecognizers makeObjectsPerformSelector:NSSelectorFromString(@"cancel")];
 		
         [self createSwipeViewIfNeeded];
         _panStartPoint = current;
@@ -1244,13 +1244,23 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         
         _firstSwipeState = MGSwipeStateNone;
     }
+	
+	if(gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled)
+	{
+		[_rnGestureRecognizers removeAllObjects];
+	}
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
 	if([otherGestureRecognizer isKindOfClass:NSClassFromString(@"RCTTouchHandler")])
 	{
-		_rnGR = otherGestureRecognizer;
+		if(_rnGestureRecognizers == nil)
+		{
+			_rnGestureRecognizers = [NSMutableSet new];
+		}
+		
+		[_rnGestureRecognizers addObject:otherGestureRecognizer];
 	}
 	
 	return NO;
