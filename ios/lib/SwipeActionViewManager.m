@@ -10,13 +10,66 @@
 #import "MGSwipeView.h"
 #import "RCTConvert.h"
 
-@interface RCMGSwipeView : MGSwipeView
+@interface RCMGSwipeView : UIView
 
+@property (nonatomic, strong) MGSwipeView* swipeView;
 @property (nonatomic, copy) RCTDirectEventBlock onButtonClickHandler;
 
 @end
 
-@implementation RCMGSwipeView @end
+@implementation RCMGSwipeView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+	self = [super initWithFrame:frame];
+	
+	if(self)
+	{
+		_swipeView = [[MGSwipeView alloc] initWithFrame:frame];
+		_swipeView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		[self addSubview:_swipeView];
+	}
+	
+	return self;
+}
+
+- (void)addSubview:(UIView *)view
+{
+	if([view isKindOfClass:[MGSwipeView class]])
+	{
+		[super addSubview:view];
+		return;
+	}
+	
+	[_swipeView.swipeContentView addSubview:view];
+}
+
+- (void)insertSubview:(UIView *)view atIndex:(NSInteger)index
+{
+	if([view isKindOfClass:[MGSwipeView class]])
+	{
+		[super insertSubview:view atIndex:index];
+		return;
+	}
+	
+	[_swipeView.swipeContentView insertSubview:view atIndex:index];
+}
+
+//- (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
+//{
+//	[super insertReactSubview:subview atIndex:atIndex];
+//	
+//	[_swipeView.swipeContentView insertSubview:subview atIndex:atIndex];
+//}
+//
+//- (void)removeReactSubview:(UIView *)subview
+//{
+//	[super removeReactSubview:subview];
+//	
+//	[subview removeFromSuperview];
+//}
+
+@end
 
 static NSDictionary* _transitionEnumMapping = nil;
 
@@ -40,11 +93,11 @@ RCT_EXPORT_MODULE()
 
 - (UIView *)view
 {
-	MGSwipeView* _swipeView = [RCMGSwipeView new];
+	RCMGSwipeView* _swipeView = [RCMGSwipeView new];
 	
-	_swipeView.rightSwipeSettings.transition = _swipeView.leftSwipeSettings.transition = MGSwipeTransitionStatic;
-	_swipeView.rightSwipeSettings.enableSwipeBounces = _swipeView.leftSwipeSettings.enableSwipeBounces = YES;
-	_swipeView.rightExpansion.fillOnTrigger = _swipeView.leftExpansion.fillOnTrigger = YES;
+	_swipeView.swipeView.rightSwipeSettings.transition = _swipeView.swipeView.leftSwipeSettings.transition = MGSwipeTransitionStatic;
+	_swipeView.swipeView.rightSwipeSettings.enableSwipeBounces = _swipeView.swipeView.leftSwipeSettings.enableSwipeBounces = YES;
+	_swipeView.swipeView.rightExpansion.fillOnTrigger = _swipeView.swipeView.leftExpansion.fillOnTrigger = YES;
 	
 	return _swipeView;
 }
@@ -81,22 +134,22 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_VIEW_PROPERTY(swipeBackgroundColor, UIColor)
 
-RCT_CUSTOM_VIEW_PROPERTY(leftSwipeSettings, NSDictionary, MGSwipeView)
+RCT_CUSTOM_VIEW_PROPERTY(leftSwipeSettings, NSDictionary, RCMGSwipeView)
 {
-	[self setSwipeSettingsTo:view.leftSwipeSettings json:json];
+	[self setSwipeSettingsTo:view.swipeView.leftSwipeSettings json:json];
 }
-RCT_CUSTOM_VIEW_PROPERTY(rightSwipeSettings, NSDictionary, MGSwipeView)
+RCT_CUSTOM_VIEW_PROPERTY(rightSwipeSettings, NSDictionary, RCMGSwipeView)
 {
-	[self setSwipeSettingsTo:view.rightSwipeSettings json:json];
+	[self setSwipeSettingsTo:view.swipeView.rightSwipeSettings json:json];
 }
 
-RCT_CUSTOM_VIEW_PROPERTY(leftExpansionSettings, NSDictionary, MGSwipeView)
+RCT_CUSTOM_VIEW_PROPERTY(leftExpansionSettings, NSDictionary, RCMGSwipeView)
 {
-	[self setExpansionSettingsTo:view.leftExpansion json:json];
+	[self setExpansionSettingsTo:view.swipeView.leftExpansion json:json];
 }
-RCT_CUSTOM_VIEW_PROPERTY(rightExpansionSettings, NSDictionary, MGSwipeView)
+RCT_CUSTOM_VIEW_PROPERTY(rightExpansionSettings, NSDictionary, RCMGSwipeView)
 {
-	[self setExpansionSettingsTo:view.rightExpansion json:json];
+	[self setExpansionSettingsTo:view.swipeView.rightExpansion json:json];
 }
 
 - (void)_handleButtonsForKeyPath:(NSString*)keyPath view:(RCMGSwipeView*)view json:(id)json
@@ -109,14 +162,14 @@ RCT_CUSTOM_VIEW_PROPERTY(rightExpansionSettings, NSDictionary, MGSwipeView)
 		NSString* title = buttonData[@"title"] ?: NSLocalizedString(@"Title", @"");
 		
 		MGSwipeButton* button = [MGSwipeButton buttonWithTitle:title backgroundColor:color callback:^BOOL(MGSwipeView *sender) {
-			RCMGSwipeView* rcView = (id)sender;
+			RCMGSwipeView* rcView = (id)[sender superview];
 			
 			if(rcView.onButtonClickHandler)
 			{
 				rcView.onButtonClickHandler(@{@"side": keyPath, @"index": @(idx)});
 			}
 			
-			[rcView hideSwipeAnimated:YES];
+			[rcView.swipeView hideSwipeAnimated:YES];
 			
 			return NO;
 		}];
@@ -124,7 +177,7 @@ RCT_CUSTOM_VIEW_PROPERTY(rightExpansionSettings, NSDictionary, MGSwipeView)
 		[newButtons addObject:button];
 	}];
 	
-	[view setValue:newButtons forKey:keyPath];
+	[view.swipeView setValue:newButtons forKey:keyPath];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(leftButtons, NSArray, RCMGSwipeView)

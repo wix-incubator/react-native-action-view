@@ -616,6 +616,8 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     void (^_animationCompletion)(BOOL finished);
     CADisplayLink * _displayLink;
     MGSwipeState _firstSwipeState;
+	
+	UIGestureRecognizer* _rnGR;
 }
 
 #pragma mark View creation & layout
@@ -973,8 +975,8 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     }
     
     BOOL onlyButtons = activeSettings.onlySwipeButtons;
-    _swipeView.transform = CGAffineTransformMakeTranslation(onlyButtons ? 0 : _swipeOffset, 0);
-    
+	_swipeView.transform = CGAffineTransformMakeTranslation(onlyButtons ? 0 : _swipeOffset, 0);
+	
     //animate existing buttons
     MGSwipeButtonsView* but[2] = {_leftView, _rightView};
     MGSwipeSettings* settings[2] = {_leftSwipeSettings, _rightSwipeSettings};
@@ -1167,6 +1169,8 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     CGPoint current = [gesture translationInView:self];
     
     if (gesture.state == UIGestureRecognizerStateBegan) {
+		[_rnGR performSelector:NSSelectorFromString(@"cancel")];
+		
         [self createSwipeViewIfNeeded];
         _panStartPoint = current;
         _panStartOffset = _swipeOffset;
@@ -1240,6 +1244,16 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         
         _firstSwipeState = MGSwipeStateNone;
     }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+	if([otherGestureRecognizer isKindOfClass:NSClassFromString(@"RCTTouchHandler")])
+	{
+		_rnGR = otherGestureRecognizer;
+	}
+	
+	return NO;
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
