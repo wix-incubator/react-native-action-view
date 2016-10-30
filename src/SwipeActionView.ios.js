@@ -12,8 +12,8 @@ export const SwipeTransitions = NativeModules.SwipeActionViewManager.SwipeTransi
 
 export class SwipeActionView extends Component {
   constructor(props) {
-    super(props)
-    
+    super(props);
+
     this._onButtonTapped = this._onButtonTapped.bind(this);
     this.state = this.stateFromProps(props);
   }
@@ -26,18 +26,18 @@ export class SwipeActionView extends Component {
     const state = {};
 
     const f = (button) => {
-      if(!button["color"]) { return button; }
+      if (!button["color"]) { return button; }
 
       button["color"] = processColor(button["color"]);
 
       return button;
     };
 
-    if(props["rightButtons"]) {
+    if (props["rightButtons"]) {
       state.rightButtons = props["rightButtons"].map(f);
     }
 
-    if(props["leftButtons"]) {
+    if (props["leftButtons"]) {
       state.leftButtons = props["leftButtons"].map(f);
     }
 
@@ -45,18 +45,17 @@ export class SwipeActionView extends Component {
   }
 
   _onButtonTapped(tappedButtonInfo) {
-    const side = tappedButtonInfo.nativeEvent.side;
-    const idx = tappedButtonInfo.nativeEvent.index;
+    const { index, side } = tappedButtonInfo.nativeEvent;
 
     if (!this.state[side]) {
       return;
     }
 
-    if(!this.state[side][idx].callback) {
+    if (!this.state[side][index].callback) {
       return;
     }
 
-    this.state[side][idx].callback();
+    this.state[side][index].callback();
   }
   render() {
     return <NativeSwipeActionView {...this.props} {...this.state} onButtonTapped={this._onButtonTapped} />;
