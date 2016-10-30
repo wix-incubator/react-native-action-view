@@ -10,7 +10,9 @@
 #import "MGSwipeView.h"
 #import "RCTConvert.h"
 
-@interface RCMGSwipeView : UIView
+static NSString* const SwipeActionViewManagerDidSwipeSomeView = @"SwipeActionViewManagerDidSwipeSomeView";
+
+@interface RCMGSwipeView : UIView <MGSwipeViewDelegate>
 
 @property (nonatomic, strong) MGSwipeView* swipeView;
 @property (nonatomic, copy) RCTDirectEventBlock onButtonClickHandler;
@@ -27,11 +29,35 @@
 	{
 		_swipeView = [[MGSwipeView alloc] initWithFrame:frame];
 		_swipeView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		_swipeView.delegate = self;
 		[self addSubview:_swipeView];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_someSwipeViewDidSwipe:) name:SwipeActionViewManagerDidSwipeSomeView object:nil];
 	}
 	
 	return self;
 }
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) swipeViewWillBeginSwiping:(MGSwipeView *) view
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:SwipeActionViewManagerDidSwipeSomeView object:_swipeView];
+}
+
+- (void)_someSwipeViewDidSwipe:(NSNotification*)note
+{
+	if(note.object == _swipeView)
+	{
+		return;
+	}
+	
+	[_swipeView hideSwipeAnimated:YES];
+}
+
 
 - (void)addSubview:(UIView *)view
 {
@@ -55,20 +81,6 @@
 	[_swipeView.swipeContentView insertSubview:view atIndex:index];
 }
 
-//- (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
-//{
-//	[super insertReactSubview:subview atIndex:atIndex];
-//	
-//	[_swipeView.swipeContentView insertSubview:subview atIndex:atIndex];
-//}
-//
-//- (void)removeReactSubview:(UIView *)subview
-//{
-//	[super removeReactSubview:subview];
-//	
-//	[subview removeFromSuperview];
-//}
-
 @end
 
 static NSDictionary* _transitionEnumMapping = nil;
@@ -82,12 +94,12 @@ RCT_EXPORT_MODULE()
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		_transitionEnumMapping = @{ @"static": @(MGSwipeTransitionStatic),
-					 @"border": @(MGSwipeTransitionBorder),
-					 @"drag": @(MGSwipeTransitionDrag),
-					 @"clipCenter": @(MGSwipeTransitionClipCenter),
-					 @"rotate3d": @(MGSwipeTransitionRotate3D),
-					 @"grow": @(MGSwipeTransitionGrow),
-					 };
+									@"border": @(MGSwipeTransitionBorder),
+									@"drag": @(MGSwipeTransitionDrag),
+									@"clipCenter": @(MGSwipeTransitionClipCenter),
+									@"rotate3d": @(MGSwipeTransitionRotate3D),
+									@"grow": @(MGSwipeTransitionGrow),
+									};
 	});
 }
 
@@ -104,8 +116,6 @@ RCT_EXPORT_MODULE()
 
 - (MGSwipeTransition)_transitionFromString:(NSString*)str
 {
-	
-	
 	if(str == nil || _transitionEnumMapping[[str lowercaseString]] == nil)
 	{
 		return MGSwipeTransitionBorder;
@@ -126,7 +136,7 @@ RCT_EXPORT_MODULE()
 - (void)setExpansionSettingsTo:(MGSwipeExpansionSettings*)settings json:(id)json
 {
 	NSDictionary* data = [RCTConvert NSDictionary:json];
-
+	
 	settings.buttonIndex = data[@"buttonIndex"] ? [data[@"buttonIndex"] integerValue] : settings.buttonIndex;
 	settings.fillOnTrigger = data[@"fillOnTrigger"] ? [data[@"fillOnTrigger"] integerValue] : settings.fillOnTrigger;
 	settings.threshold = data[@"threshold"] ? [data[@"threshold"] integerValue] : settings.threshold;

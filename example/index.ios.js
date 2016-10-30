@@ -38,6 +38,42 @@ class example extends Component {
             Tap on a button or swipe fully.
           </Text>
         </SwipeActionView>
+        <SwipeActionView rightExpansionSettings={{buttonIndex: 0}}
+                         leftExpansionSettings={{buttonIndex: 0}} 
+                         rightButtons={[{title: 'Red', color: 'rgb(255, 0, 0)', callback: () => {alert('Red button tapped.');}}, 
+                                        {title: 'Green', color: 'rgb(0, 255, 0)', callback: () => {alert('Green button tapped.');}},
+                                        {title: 'Blue', color: 'rgb(0, 0, 255)', callback: () => {alert('Blue button tapped.');}}]}
+                         leftButtons={[{title: 'Red', color: 'rgb(255, 0, 0)', callback: () => {alert('Red button tapped.');}}, 
+                                        {title: 'Green', color: 'rgb(0, 255, 0)', callback: () => {alert('Green button tapped.');}},
+                                        {title: 'Blue', color: 'rgb(0, 0, 255)', callback: () => {alert('Blue button tapped.');}}]}>
+          <Text style={styles.welcome}>
+            Welcome to React Native!
+          </Text>
+          <Text style={styles.instructions}>
+            To get started, swipe this view.
+          </Text>
+          <Text style={styles.instructions}>
+            Tap on a button or swipe fully.
+          </Text>
+        </SwipeActionView>
+        <SwipeActionView rightExpansionSettings={{buttonIndex: 0}}
+                         leftExpansionSettings={{buttonIndex: 0}} 
+                         rightButtons={[{title: 'Red', color: 'rgb(255, 0, 0)', callback: () => {alert('Red button tapped.');}}, 
+                                        {title: 'Green', color: 'rgb(0, 255, 0)', callback: () => {alert('Green button tapped.');}},
+                                        {title: 'Blue', color: 'rgb(0, 0, 255)', callback: () => {alert('Blue button tapped.');}}]}
+                         leftButtons={[{title: 'Red', color: 'rgb(255, 0, 0)', callback: () => {alert('Red button tapped.');}}, 
+                                        {title: 'Green', color: 'rgb(0, 255, 0)', callback: () => {alert('Green button tapped.');}},
+                                        {title: 'Blue', color: 'rgb(0, 0, 255)', callback: () => {alert('Blue button tapped.');}}]}>
+          <Text style={styles.welcome}>
+            Welcome to React Native!
+          </Text>
+          <Text style={styles.instructions}>
+            To get started, swipe this view.
+          </Text>
+          <Text style={styles.instructions}>
+            Tap on a button or swipe fully.
+          </Text>
+        </SwipeActionView>
       </View>
     );
   }
