@@ -4,7 +4,7 @@
 
 <p align="center"><img src="https://raw.githubusercontent.com/MortimerGoro/MGSwipeTableCell/master/readme-assets/static.gif" /></p>
 
-###Using
+### Using
 
 Import the component:
 
@@ -36,7 +36,7 @@ And then use the component:
 </SwipeActionView>
 ```
 
-###Configuration
+### Configuration
 
 Possible props are:
 
@@ -51,24 +51,24 @@ Possible props are:
     - Available types: `"static"` (default), `"border"`, `"drag"`, `"clipCenter"`, `"rotate3d"`, `"grow"`
   - enableSwipeBounces - Controls if the swipe motion bounces or not (Boolean)
   
-##Transitions Types
+## Transitions Types
 
-###Border
+### Border
 
 <p align="center"><img src="https://raw.githubusercontent.com/MortimerGoro/MGSwipeTableCell/master/readme-assets/border.gif" /></p>
 
-###Clip
+### Clip
 
 <p align="center"><img src="https://raw.githubusercontent.com/MortimerGoro/MGSwipeTableCell/master/readme-assets/clip.gif" /></p>
 
-###Rotate3D
+### Rotate3D
 
 <p align="center"><img src="https://raw.githubusercontent.com/MortimerGoro/MGSwipeTableCell/master/readme-assets/3d.gif" /></p>
 
-###Static
+### Static
 
 <p align="center"><img src="https://raw.githubusercontent.com/MortimerGoro/MGSwipeTableCell/master/readme-assets/static.gif" /></p>
 
-###Drag
+### Drag
 
 <p align="center"><img src="https://raw.githubusercontent.com/MortimerGoro/MGSwipeTableCell/master/readme-assets/drag.gif" /></p>
