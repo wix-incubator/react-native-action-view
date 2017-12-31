@@ -1,4 +1,4 @@
-#React Native Action View
+# React Native Action View
 
 `react-native-action-view` is an easy to use component that allows to display swipeable buttons with a variety of transitions.
 
