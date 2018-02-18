@@ -1,6 +1,6 @@
 # React Native Action View
 
-`react-native-action-view` is an easy to use component that allows to display swipeable buttons with a variety of transitions.
+`react-native-action-view` is an easy to use component that allows displaying swipeable buttons with a variety of transitions.
 
 <p align="center"><img src="https://raw.githubusercontent.com/MortimerGoro/MGSwipeTableCell/master/readme-assets/static.gif" /></p>
 
@@ -12,7 +12,7 @@ Import the component:
 import { SwipeActionView } from 'react-native-action-view';
 ```
 
-And then use the component:
+Use the component:
 
 ```js
 <SwipeActionView rightExpansionSettings={{buttonIndex: 0}}
