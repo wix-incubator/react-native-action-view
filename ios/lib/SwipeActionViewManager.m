@@ -211,6 +211,11 @@ RCT_REMAP_VIEW_PROPERTY(onButtonTapped, onButtonClickHandler, RCTDirectEventBloc
 	return @{ @"SwipeTransitions" : _transitionEnumMapping};
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
+}
+
 @end
 
 @interface RCTConvert (SwipeActionView) @end

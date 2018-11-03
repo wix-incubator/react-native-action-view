@@ -18,7 +18,7 @@ import { SwipeActionView } from 'react-native-action-view';
 class example extends Component {
   render() {
     return (
-      <View contentContainerStyle={styles.container}>
+      <View style={styles.container}>
         <View style={{height: 20}} />
         <SwipeActionView rightExpansionSettings={{buttonIndex: 0}}
                          leftExpansionSettings={{buttonIndex: 0}} 
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
