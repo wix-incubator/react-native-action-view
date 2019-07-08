@@ -23,6 +23,12 @@
   },
   "dependencies": {
     "react": "^16.8.1",
-    "react-native": "^0.59.3"
-  }
+    "react-native": "^0.60.0",
+    "snyk": "^1.192.4"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
