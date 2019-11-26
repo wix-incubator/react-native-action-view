@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AC34F0B575EB164C28C060F /* libPods-SwipeActionView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 937491B8BB0C766F69876970 /* libPods-SwipeActionView.a */; };
 		39C2E4621D9A679E0074A644 /* SwipeActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C2E4611D9A679E0074A644 /* SwipeActionView.m */; };
 		39C2E4631D9A679E0074A644 /* SwipeActionView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 39C2E4601D9A679E0074A644 /* SwipeActionView.h */; };
 		39C2E4691D9A681B0074A644 /* SwipeActionViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C2E4681D9A681B0074A644 /* SwipeActionViewManager.m */; };
@@ -28,6 +29,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0DB988F4571A0FF4E74A47F0 /* Pods-SwipeActionView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeActionView.release.xcconfig"; path = "Target Support Files/Pods-SwipeActionView/Pods-SwipeActionView.release.xcconfig"; sourceTree = "<group>"; };
+		2E55E8FDFE3B8965D366C90D /* Pods-SwipeActionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeActionView.debug.xcconfig"; path = "Target Support Files/Pods-SwipeActionView/Pods-SwipeActionView.debug.xcconfig"; sourceTree = "<group>"; };
 		39C2E4551D9A67190074A644 /* MGSwipeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGSwipeView.m; sourceTree = "<group>"; };
 		39C2E4561D9A67190074A644 /* MGSwipeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGSwipeView.h; sourceTree = "<group>"; };
 		39C2E4571D9A67190074A644 /* MGSwipeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
@@ -37,6 +40,7 @@
 		39C2E4611D9A679E0074A644 /* SwipeActionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwipeActionView.m; sourceTree = "<group>"; };
 		39C2E4671D9A681B0074A644 /* SwipeActionViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeActionViewManager.h; sourceTree = "<group>"; };
 		39C2E4681D9A681B0074A644 /* SwipeActionViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeActionViewManager.m; sourceTree = "<group>"; };
+		937491B8BB0C766F69876970 /* libPods-SwipeActionView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwipeActionView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,12 +48,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AC34F0B575EB164C28C060F /* libPods-SwipeActionView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B7825126ECA467B177B1A6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2E55E8FDFE3B8965D366C90D /* Pods-SwipeActionView.debug.xcconfig */,
+				0DB988F4571A0FF4E74A47F0 /* Pods-SwipeActionView.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		39C2E44E1D9A67100074A644 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +73,8 @@
 				39C2E4681D9A681B0074A644 /* SwipeActionViewManager.m */,
 				39C2E45F1D9A679E0074A644 /* SwipeActionView */,
 				39C2E45E1D9A679E0074A644 /* Products */,
+				1B7825126ECA467B177B1A6C /* Pods */,
+				F18E765F78452AF110356671 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +106,14 @@
 			name = MGSwipeView;
 			sourceTree = "<group>";
 		};
+		F18E765F78452AF110356671 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				937491B8BB0C766F69876970 /* libPods-SwipeActionView.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -96,6 +121,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39C2E4661D9A679E0074A644 /* Build configuration list for PBXNativeTarget "SwipeActionView" */;
 			buildPhases = (
+				77B9B1E9E64A9B9AA7D739DA /* [CP] Check Pods Manifest.lock */,
 				39C2E4591D9A679E0074A644 /* Sources */,
 				39C2E45A1D9A679E0074A644 /* Frameworks */,
 				39C2E45B1D9A679E0074A644 /* CopyFiles */,
@@ -139,6 +165,31 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		77B9B1E9E64A9B9AA7D739DA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwipeActionView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		39C2E4591D9A679E0074A644 /* Sources */ = {
@@ -205,6 +256,7 @@
 		};
 		39C2E4641D9A679E0074A644 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E55E8FDFE3B8965D366C90D /* Pods-SwipeActionView.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -259,6 +311,7 @@
 		};
 		39C2E4651D9A679E0074A644 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DB988F4571A0FF4E74A47F0 /* Pods-SwipeActionView.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
