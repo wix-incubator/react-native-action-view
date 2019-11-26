@@ -7,13 +7,6 @@ target 'example' do
     # but if not, adjust the `:path` accordingly
     pod 'React', :path => '../node_modules/react-native/'
     pod 'React-Core', :path => '../node_modules/react-native/'
-    # pod 'React-CoreModules', :path => "../node_modules/react-native/React/CoreModules"
-    # pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
-    # pod 'ReactCommon', :path => '../node_modules/react-native/ReactCommon'
-    # pod 'FBLazyVector', :podspec => '../node_modules/react-native/Libraries/FBLazyVector/FBLazyVector.podspec'
-    # pod 'FBReactNativeSpec', :podspec => '../node_modules/react-native/Libraries/FBReactNativeSpec/FBReactNativeSpec.podspec'
-    # pod 'RCTRequired', :podspec => '../node_modules/react-native/Libraries/RCTRequired/RCTRequired.podspec'
-    # pod 'RCTTypeSafety', :podspec => '../node_modules/react-native/Libraries/TypeSafety/RCTTypeSafety.podspec'
     pod 'React-Core/DevSupport', :path => '../node_modules/react-native/'
     pod 'React-RCTActionSheet', :path => '../node_modules/react-native/Libraries/ActionSheetIOS'
     pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
@@ -33,6 +26,13 @@ target 'example' do
     pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
     pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
     pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+
+    pod 'React-CoreModules', :path => "../node_modules/react-native/React/CoreModules"
+    pod 'ReactCommon/turbomodule/core', :path => '../node_modules/react-native/ReactCommon'
+    pod 'FBLazyVector', :path => '../node_modules/react-native/Libraries/FBLazyVector'
+    pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
+    pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
+    pod 'RCTTypeSafety', :path => "../node_modules/react-native/Libraries/TypeSafety"
 
     pod 'SwipeActionView', :podspec => '../../SwipeActionView.podspec'
 

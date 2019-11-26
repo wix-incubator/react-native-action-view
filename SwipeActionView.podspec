@@ -5,7 +5,7 @@ package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
 Pod::Spec.new do |spec|
 
   spec.name         = "SwipeActionView"
-  spec.version      = package['version']
+  spec.version      = "1.0.6"
   spec.summary      = package['description']
   spec.license      = package['license']
 
