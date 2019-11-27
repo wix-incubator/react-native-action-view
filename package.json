@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/wix/react-native-action-view.git"
   },
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Native container view for enabling swipe actions (for example to enable swipe to delete and such)",
   "nativePackage": true,
   "bugs": {
