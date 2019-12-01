@@ -1,6 +1,6 @@
 'use strict'
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
   requireNativeComponent,
   NativeModules,
@@ -10,54 +10,34 @@ import {
 const NativeSwipeActionView = requireNativeComponent('SwipeActionView');
 export const SwipeTransitions = NativeModules.SwipeActionViewManager.SwipeTransitions;
 
-export class SwipeActionView extends Component {
-  constructor(props) {
-    super(props);
-
-    this._onButtonTapped = this._onButtonTapped.bind(this);
-    this.state = this.stateFromProps(props);
+const formatButtonMutating = button => {
+  if (button.color) {
+    button.color = processColor(button.color);
   }
+};
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(this.stateFromProps(nextProps));
+const formatButtonsMutating = buttons => {
+  if (buttons != null) {
+    buttons.forEach(formatButtonMutating);
   }
+};
 
-  stateFromProps(props) {
-    const state = {};
+export const SwipeActionView = props => {
+  formatButtonsMutating(props.leftButtons);
+  formatButtonsMutating(props.rightButtons);
 
-    const f = (button) => {
-      if (!button["color"]) { return button; }
+  const onButtonTapped = React.useCallback(
+    tappedButtonInfo => {
+      const {index, side} = tappedButtonInfo.nativeEvent;
+      const buttons = props[side];
+      const button = buttons != null ? buttons[index] : null;
+      const callback = button != null ? button.callback : null;
+      if (typeof callback === 'function') {
+        callback();
+      }
+    },
+    [props],
+  );
 
-      button["color"] = processColor(button["color"]);
-
-      return button;
-    };
-
-    if (props["rightButtons"]) {
-      state.rightButtons = props["rightButtons"].map(f);
-    }
-
-    if (props["leftButtons"]) {
-      state.leftButtons = props["leftButtons"].map(f);
-    }
-
-    return state;
-  }
-
-  _onButtonTapped(tappedButtonInfo) {
-    const { index, side } = tappedButtonInfo.nativeEvent;
-
-    if (!this.state[side]) {
-      return;
-    }
-
-    if (!this.state[side][index].callback) {
-      return;
-    }
-
-    this.state[side][index].callback();
-  }
-  render() {
-    return <NativeSwipeActionView {...this.props} {...this.state} onButtonTapped={this._onButtonTapped} />;
-  }
-}
+  return <NativeSwipeActionView {...props} onButtonTapped={onButtonTapped} />;
+};
