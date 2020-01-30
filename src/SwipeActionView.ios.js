@@ -23,20 +23,26 @@ const formatButtonsMutating = buttons => {
 };
 
 export const SwipeActionView = props => {
-  formatButtonsMutating(props.leftButtons);
-  formatButtonsMutating(props.rightButtons);
+  const {leftButtons, rightButtons} = props;
+  formatButtonsMutating(leftButtons);
+  formatButtonsMutating(rightButtons);
 
   const onButtonTapped = React.useCallback(
     tappedButtonInfo => {
       const {index, side} = tappedButtonInfo.nativeEvent;
-      const buttons = props[side];
+      const buttons =
+        side === 'leftButtons'
+          ? leftButtons
+          : side === 'rightButtons'
+          ? rightButtons
+          : undefined;
       const button = buttons != null ? buttons[index] : null;
       const callback = button != null ? button.callback : null;
       if (typeof callback === 'function') {
         callback();
       }
     },
-    [props],
+    [leftButtons, rightButtons],
   );
 
   return <NativeSwipeActionView {...props} onButtonTapped={onButtonTapped} />;
