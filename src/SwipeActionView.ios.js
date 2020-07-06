@@ -1,6 +1,6 @@
 'use strict'
 
-import React, { Component } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import {
   requireNativeComponent,
   NativeModules,
@@ -10,54 +10,49 @@ import {
 const NativeSwipeActionView = requireNativeComponent('SwipeActionView');
 export const SwipeTransitions = NativeModules.SwipeActionViewManager.SwipeTransitions;
 
-export class SwipeActionView extends Component {
-  constructor(props) {
-    super(props);
+const transformColor = (button) => {
+  if (!button.color) { return button; }
 
-    this._onButtonTapped = this._onButtonTapped.bind(this);
-    this.state = this.stateFromProps(props);
+  return {
+    ...button,
+    color: processColor(button.color),
+  };
+};
+
+const stateFromProps = (props) => {
+  const state = {};
+
+  if (props.rightButtons) {
+    state.rightButtons = props.rightButtons.map(transformColor);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(this.stateFromProps(nextProps));
+  if (props.leftButtons) {
+    state.leftButtons = props.leftButtons.map(transformColor);
   }
 
-  stateFromProps(props) {
-    const state = {};
-
-    const f = (button) => {
-      if (!button["color"]) { return button; }
-
-      button["color"] = processColor(button["color"]);
-
-      return button;
-    };
-
-    if (props["rightButtons"]) {
-      state.rightButtons = props["rightButtons"].map(f);
-    }
-
-    if (props["leftButtons"]) {
-      state.leftButtons = props["leftButtons"].map(f);
-    }
-
-    return state;
-  }
-
-  _onButtonTapped(tappedButtonInfo) {
-    const { index, side } = tappedButtonInfo.nativeEvent;
-
-    if (!this.state[side]) {
-      return;
-    }
-
-    if (!this.state[side][index].callback) {
-      return;
-    }
-
-    this.state[side][index].callback();
-  }
-  render() {
-    return <NativeSwipeActionView {...this.props} {...this.state} onButtonTapped={this._onButtonTapped} />;
-  }
+  return state;
 }
+
+const SwipeActionView = memo((props) => {
+  const [state, setState] = useState(stateFromProps(props));
+
+  const onButtonTapped = useCallback(({nativeEvent}) => {
+    const { index, side } = nativeEvent;
+
+    state[side]?.[index]?.callback?.();
+  }, []);
+
+  useEffect(() => {
+    setState(stateFromProps(props));
+  }, [props]);
+
+  return (
+    <NativeSwipeActionView {...props} {...state} onButtonTapped={onButtonTapped} />
+  );
+});
+
+SwipeActionView.displayName = 'SwipeActionView';
+
+export {
+  SwipeActionView
+};
