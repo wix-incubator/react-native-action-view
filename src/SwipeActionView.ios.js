@@ -40,14 +40,18 @@ const SwipeActionView = memo((props) => {
     const { index, side } = nativeEvent;
 
     state[side]?.[index]?.callback?.();
-  }, []);
+  }, [state]);
 
   useEffect(() => {
     setState(stateFromProps(props));
   }, [props]);
 
   return (
-    <NativeSwipeActionView {...props} {...state} onButtonTapped={onButtonTapped} />
+    <NativeSwipeActionView
+      {...props}
+      {...state}
+      onButtonTapped={onButtonTapped}
+    />
   );
 });
 
