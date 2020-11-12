@@ -665,6 +665,9 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panHandler:)];
     [self addGestureRecognizer:_panRecognizer];
     _panRecognizer.delegate = self;
+    if (@available(iOS 13.4, *)) {
+        _panRecognizer.allowedScrollTypesMask = UIScrollTypeMaskAll;
+    }
     _activeExpansion = nil;
     _previusHiddenViews = [NSMutableSet set];
     _swipeState = MGSwipeStateNone;
