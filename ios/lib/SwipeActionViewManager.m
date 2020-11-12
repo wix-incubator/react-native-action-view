@@ -147,7 +147,7 @@ RCT_EXPORT_MODULE()
 	settings.threshold = data[@"threshold"] ? [data[@"threshold"] integerValue] : settings.threshold;
 }
 
-RCT_EXPORT_VIEW_PROPERTY(swipeBackgroundColor, UIColor)
+RCT_REMAP_VIEW_PROPERTY(swipeBackgroundColor, swipeView.swipeBackgroundColor, UIColor)
 
 RCT_CUSTOM_VIEW_PROPERTY(leftSwipeSettings, NSDictionary, RCMGSwipeView)
 {
