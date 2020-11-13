@@ -767,7 +767,6 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         _swipeOverlay.backgroundColor = [self backgroundColorForSwipe];
         _swipeOverlay.layer.zPosition = 10; //force render on top of the contentView;
         _swipeView = [[UIImageView alloc] initWithFrame:_swipeOverlay.bounds];
-		_swipeView.backgroundColor = [UIColor whiteColor];
         _swipeView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _swipeView.contentMode = UIViewContentModeCenter;
         _swipeView.clipsToBounds = YES;
