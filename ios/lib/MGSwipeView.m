@@ -168,6 +168,9 @@
         return;
     }
     if (!_expandedButton) {
+        if (@available(iOS 13.0, *)) {
+            [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid] impactOccurredWithIntensity:0.8];
+        }
         _expandedButton = [_buttons objectAtIndex: _fromLeft ? settings.buttonIndex : _buttons.count - settings.buttonIndex - 1];
         CGRect previusRect = _container.frame;
         [self layoutExpansion:offset];
@@ -225,6 +228,9 @@
 -(void) endExpansionAnimated:(BOOL) animated
 {
     if (_expandedButton) {
+        if (@available(iOS 13.0, *)) {
+            [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid] impactOccurredWithIntensity:0.7];
+        }
         _expandedButtonAnimated = _expandedButton;
         if (_expansionBackgroundAnimated && _expansionBackgroundAnimated != _expansionBackground) {
             [_expansionBackgroundAnimated removeFromSuperview];
