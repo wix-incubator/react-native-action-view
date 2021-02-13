@@ -932,19 +932,6 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
 
 -(void) updateState: (MGSwipeState) newState;
 {
-    if (@available(iOS 13.0, *)) {
-        if (_panRecognizer.state == UIGestureRecognizerStateChanged) {
-            BOOL wasSwiping = _swipeState == MGSwipeStateSwipingLeftToRight || _swipeState == MGSwipeStateSwipingRightToLeft;
-            BOOL isSwiping = newState == MGSwipeStateSwipingLeftToRight || newState == MGSwipeStateSwipingRightToLeft;
-            BOOL wasExpanding = _swipeState == MGSwipeStateExpandingLeftToRight || _swipeState == MGSwipeStateExpandingRightToLeft;
-            BOOL isExpanding = newState == MGSwipeStateExpandingLeftToRight || newState == MGSwipeStateExpandingRightToLeft;
-            if (wasSwiping && isExpanding) {
-                [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid] impactOccurredWithIntensity:0.8];
-            } else if (isSwiping && wasExpanding) {
-                [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid] impactOccurredWithIntensity:0.7];
-            }
-        }
-    }
     if (!_triggerStateChanges || _swipeState == newState) {
         return;
     }
@@ -958,6 +945,7 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
 
 - (void)setSwipeOffset:(CGFloat) newOffset;
 {
+    MGSwipeState previousState = _swipeState;
     CGFloat sign = newOffset > 0 ? 1.0 : -1.0;
     MGSwipeButtonsView * activeButtons = sign < 0 ? _rightView : _leftView;
     MGSwipeSettings * activeSettings = sign < 0 ? _rightSwipeSettings : _leftSwipeSettings;
@@ -1019,6 +1007,17 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
             CGFloat t = MIN(1.0f, offset/view.bounds.size.width);
             [view transition:settings[i].transition percent:t];
             [self updateState:i ? MGSwipeStateSwipingRightToLeft : MGSwipeStateSwipingLeftToRight];
+        }
+    }
+
+    if (@available(iOS 13.0, *)) {
+        BOOL wasExpanding = previousState == MGSwipeStateExpandingLeftToRight || previousState == MGSwipeStateExpandingRightToLeft;
+        BOOL isExpanding = _swipeState == MGSwipeStateExpandingLeftToRight || _swipeState == MGSwipeStateExpandingRightToLeft;
+
+        if (!wasExpanding && isExpanding) {
+            [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid] impactOccurredWithIntensity:0.8];
+        } else if (wasExpanding && !isExpanding) {
+            [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid] impactOccurredWithIntensity:0.7];
         }
     }
 }
