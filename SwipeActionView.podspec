@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
 
   spec.author       = "Wix"
   spec.homepage     = package['homepage']
-  spec.platforms    = { :ios => "9.0", :tvos => "9.2" }
+  spec.platforms    = { :ios => "10.0", :tvos => "10.0" }
 
   spec.source       = { :git => "https://github.com/wix/react-native-action-view.git", :tag => "v#{spec.version}" }
   spec.source_files = "ios/lib/**/*.{h,m}"
