@@ -1,14 +1,16 @@
 'use strict'
 
-import React, { Component } from 'react';
+import React, { memo } from 'react';
 import {
   View
 } from 'react-native';
 
 export const SwipeTransitions = {};
 
-export class SwipeActionView extends Component {
-  render() {
-    return <View {...this.props} />;
-  }
-}
+const SwipeActionView = memo((props) => <View {...props} />);
+
+SwipeActionView.displayName = 'SwipeActionView';
+
+export {
+  SwipeActionView
+};
